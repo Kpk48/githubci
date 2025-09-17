@@ -1,0 +1,18 @@
+name: "Presidio CI Example"
+on:
+    pull_request:
+        branches: ["main"]
+    push:
+        branches: ["main"]
+jobs:
+    automerge:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Branch
+              uses: actions/checkout@v4
+            - name: auto-merge
+              uses: pascalgn/automerge-action@v0.15.0
+              env:
+                GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}} 
+              with:
+                merge-method: squash
